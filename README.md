@@ -1,2 +1,2 @@
 # group12-project3
-Vegetation loss due to human activity
+Changes in vegetation due to human activity in Texas.
