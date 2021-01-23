@@ -35,27 +35,39 @@ var Result = {
 
 
 $("#predict").click(async function () {
-	let image = $('#imageResult').get(0);
-	
-	let pre_image = tf.browser.fromPixels(image, 3)
-		.resizeNearestNeighbor([128, 128])
-		.expandDims()
-		.toFloat()
-		.reverse(-1); 
-	let predict_result = await model.predict(pre_image).data();
-	console.log(predictions);
-	let order = Array.from(predict_result)
-		.map(function (p, i) { 
-			return {
-				probability: p,
-				className: Result[i] 
-			};
-		}).sort(function (a, b) {
-			return b.probability - a.probability;
-		}).slice(0, 2);
+	// let image = new FormData($('#inputForm')[0].files[0]);
+	console.log($('#imageResult').attr('src'))
+	$.ajax({
+		url: '/predict',
+		data:$('#imageResult').attr('src'),
+		contentType:false,
+		cache:false,
+		processData:false,
+		method:'POST',
+	}).done(
+		function (d){
+			$('#prediction').text()
+		}
+	)
+	// let pre_image = tf.browser.fromPixels(image, 3)
+	// 	.resizeNearestNeighbor([128, 128])
+	// 	.expandDims()
+	// 	.toFloat()
+	// 	.reverse(-1); 
+	// let predict_result = await model.predict(pre_image).data();
+	// console.log(predictions);
+	// let order = Array.from(predict_result)
+	// 	.map(function (p, i) { 
+	// 		return {
+	// 			probability: p,
+	// 			className: Result[i] 
+	// 		};
+	// 	}).sort(function (a, b) {
+	// 		return b.probability - a.probability;
+	// 	}).slice(0, 2);
 
-	$("#list").empty();
-	order.forEach(function (p) {
-		$("#list").append(`<li>${p.className}: ${parseInt(Math.trunc(p.probability * 100))} %</li>`);
-	});
+	// $("#list").empty();
+	// order.forEach(function (p) {
+	// 	$("#list").append(`<li>${p.className}: ${parseInt(Math.trunc(p.probability * 100))} %</li>`);
+	// });
 });
