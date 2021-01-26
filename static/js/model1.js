@@ -34,21 +34,23 @@ var Result = {
 };
 
 
-$("#predict").click(async function () {
+$("#predict").click(function () {
 	// let image = new FormData($('#inputForm')[0].files[0]);
 	console.log($('#imageResult').attr('src'))
 	$.ajax({
 		url: '/predict',
-		data:$('#imageResult').attr('src'),
+		data:document.getElementById('upload').files[0],
 		contentType:false,
 		cache:false,
 		processData:false,
 		method:'POST',
 	}).done(
 		function (d){
-			$('#prediction').text()
+		console.log(d['damaged'])
+			$('#prediction').text(Math.round((1- d['damaged']) * 100,2) + '% Damaged')
 		}
 	)
+
 	// let pre_image = tf.browser.fromPixels(image, 3)
 	// 	.resizeNearestNeighbor([128, 128])
 	// 	.expandDims()
