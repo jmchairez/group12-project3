@@ -72,6 +72,15 @@ def model():
 #     probs = harvey_model3.predict(img)[0]
 #     output = {'damage': probs[0], 'no damage': probs[1]}
 #     return output
+@app.route("/team")
+def team():
+    return render_template("team.html")
 
+@app.route("/map")
+def map():
+    return render_template("map.html")
+
+
+    
 if __name__ == "__main__":
     app.run(debug=True)

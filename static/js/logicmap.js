@@ -72,7 +72,7 @@ const myMap = L.map("map", {
 var hurricaneIcon = L.icon({iconUrl:"https://img.icons8.com/material-rounded/48/4a90e2/hurricane.png"})
 var waterIcon = L.icon({iconUrl:"https://img.icons8.com/color/48/000000/flood-car.png"})
 
-d3.csv("/static/data/Harvey.csv", function(harveyData) {
+d3.csv("../static/data/Harvey.csv", function(harveyData) {
     for (var i in harveyData) {
         var row = harveyData[i];
 
@@ -81,7 +81,7 @@ d3.csv("/static/data/Harvey.csv", function(harveyData) {
 });
 
 
-d3.csv("/static/data/HighWaterMarkers.csv", function(waterData){
+d3.csv("../static/data/HighWaterMarkers.csv", function(waterData){
     for (var j in waterData) {
         var newrow = waterData[j];
         

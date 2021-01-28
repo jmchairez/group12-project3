@@ -1,6 +1,6 @@
 body{
 
-background-color: #0f140c;
+background-color:white;
 
 }
 .view{
@@ -36,6 +36,12 @@ background-color: #0f140c;
    color: white    
 }
 
+#brand-image{
+  height: 50px;
+}
+/* .navbar-brand{
+height: 20px;   
+} */
  /* .navbar-light .navbar-brand {
     color:white;
 }
@@ -112,4 +118,21 @@ background-color: #0f140c;
 
   .filters .panel-body {
     padding: 0;
+  }
+
+  .figure-caption {
+    
+    color: white;
+    font-style: italic;
+    padding: 2px;
+    text-align: center;
+    font-size: 30;
+  }
+
+  footer {
+    background-color:black;
+    text-align: center;
+    padding: 3px;
+  
+    color: white;
   }

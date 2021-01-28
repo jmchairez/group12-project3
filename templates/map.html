@@ -20,15 +20,20 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"></script>
   <link rel="stylesheet" href="../static/css/model.css">
-  <link rel="stylesheet" href="../static/css/style.css">
+  <!--Leaflet CSS-->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+      integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+      crossorigin="" />
+    <!-- Our CSS -->
+    <link rel="stylesheet" type="text/css" href="../static/css/mapstyle.css">
+
 </head> 
 
 <body>
   <header>  
     <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light trn">
       <div class="container-fluid">
-        <a class="navbar-brand" href="/">
-          <img id = "brand-image" alt ='logo'src="../static/image/logo-hurricane.gif"></a> 
+        <a class="navbar-brand" href="/">Group 12</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -46,55 +51,38 @@
               </li>
     
               <li class="nav-item">
-                <a class="nav-link nav-link-ltr" href="/map">map</a>
+                <a class="nav-link nav-link-ltr" href="/map">Map</a>
               </li>
              
+            
           </ul>
         </div>
       </div>
     </nav>  
   </header>
 
-  <div class="container py-5">
+  <body>
+    <!-- The div that holds our map -->
+    <div id="map"></div>
+    <img src="https://img.icons8.com/color/48/000000/flood-car.png"/>
+    <img src="https://img.icons8.com/material-rounded/48/4a90e2/hurricane.png"/>
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+      integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+      crossorigin=""></script>
+    <!-- D3 JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.3/d3.min.js"></script>
+    <!-- API key -->
+    <script type="text/javascript" src="../static/js/config.js"></script>
+    <!-- Our JavaScript -->
+    <script type="text/javascript" src="../static/js/logicmap.js"></script>
+  </body>
+  
+  <a href="https://coast.noaa.gov/hurricanes/#map=3.12/26.28/-71.7&search=eyJzZWFyY2hTdHJpbmciOiJIQVJWRVkgMjAxNyIsInNlYXJjaFR5cGUiOiJuYW1lIiwibWF0Y2giOiJleGFjdCIsImNhdGVnb3JpZXMiOlsiSDUiLCJINCIsIkgzIiwiSDIiLCJIMSIsIlRTIiwiVEQiLCJFVCJdLCJ5ZWFycyI6W10sIm1vbnRocyI6W10sImVuc28iOltdLCJwcmVzc3VyZSI6eyJyYW5nZSI6WzAsMTE1MF0sImluY2x1ZGVVbmtub3duUHJlc3N1cmUiOnRydWV9LCJidWZmZXJVbml0IjpbIk1pbGVzIl0sInNvcnRTZWxlY3Rpb24iOnsidmFsdWUiOiJ5ZWFyc19uZXdlc3QiLCJsYWJlbCI6IlllYXIgKE5ld2VzdCkifSwiYXBwbHlUb0FPSSI6ZmFsc2UsImlzU3Rvcm1MYWJlbHNWaXNpYmxlIjp0cnVlfQ==">National Oceanic and Atmospheric Administration</a>
+  <a href="https://icons8.com/icon/54gBpMx6Fs4V/flood-car">Flood Car icon by Icons8</a>
+  
 
     
-    <header class="text-white text-center">
-        <h1 class="display-4">Hurricane Image Model</h1>
-        <p class="lead mb-0">Upload your image</p>
-        
-        <img src="../static/image/Upload-icon.png" alt="" width="150" class="mb-4">
-    </header>
-
-
-    <div class="row py-4">
-        <div class="col-lg-6 mx-auto">
-
-            <!-- Upload image input-->
-            <div class="input-group mb-3 px-2 py-2 rounded-pill bg-white shadow-sm">
-                <input id="upload" name="upload" type="file" onchange="readURL(this);" class="form-control border-0">
-                <label id="upload-label" for="upload" class="font-weight-light text-muted">Choose file</label>
-                <div class="input-group-append">
-                  <label for="upload" class="btn btn-light m-0 rounded-pill px-4"> <i class="fa fa-cloud-upload mr-2 text-muted"></i><small class="text-uppercase font-weight-bold text-muted">Choose file</small></label>
-                </div>
-          
-              </div>
-            <button id="predict" type="button" class="btn btn-primary">Predict</button>
-            <!-- Uploaded image area-->
-            <!-- <p class="font-italic text-white text-center">The image uploaded will be rendered inside the box below.</p> -->
-            <div class="image-area mt-4"><img id="imageResult" src="#" alt="" class="img-fluid rounded shadow-sm mx-auto d-block"></div>
-           
-            <div><h1 id="prediction"></h1></div>
-        </div>
-    </div>
-</div>
-
-<footer class="text-center">
-  <a class="up-arrow" href="#begin" data-toggle="tooltip" title="TO TOP">
-    <span class="glyphicon glyphicon-chevron-up"></span>
-  </a><br><br>
-  <p>Team members: Gina Canales, Janette Chairez, Roberto De la Torre, and Charles Robinson</p> 
-  
-</footer>
 
   <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
